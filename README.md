@@ -30,7 +30,8 @@ comp.feed(res);
 ``` 
 
 And we can use stream-pkg in a socket-based server and client as below:
-sever.js
+
+###sever.js
 ``` javascript
 var net = require('net');
 var Composer = require('stream-pkg');
@@ -58,7 +59,7 @@ var server = net.createServer(function(socket) {
 server.listen(8888);
 ```
 
-client.js
+###client.js
 ``` javascript
 var net = require('net');
 var Composer = require('stream-pkg');
