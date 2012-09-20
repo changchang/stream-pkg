@@ -29,7 +29,7 @@ comp.on('data', function(data) {
 comp.feed(res);
 ``` 
 
-And we can use stream-pkg in a socket-based server and client as below:
+And we can use stream-pkg in a socket-based echo server and client as below:
 
 ###sever.js
 ``` javascript
@@ -90,7 +90,7 @@ client.on('data', function(data) {
 });
 
 for(var i=0; i<count; i++) {
-  client.write(composer.compose(src));
+	client.write(composer.compose(src));
 }
 ```
 
