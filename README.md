@@ -112,3 +112,4 @@ Feed data into composer.
 ###'data'(pkg)
 Emit package by data event when the package has finished.
 ###'length_limit'(composer, data, offset)
+Emit when the package exceeds the limit of package size.
