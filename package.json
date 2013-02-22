@@ -16,6 +16,6 @@
 		"jscoverage": ">=0.0.1"
 	},
 	"scripts": {
-    "test": "make test"
+    "test": "mocha test"
   }
 }
