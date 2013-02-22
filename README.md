@@ -1,8 +1,10 @@
 #Stream-pkg
 
-Stream-pkg is a simple tool for packages that transfered on stream-based API. 
+[![Build Status](https://secure.travis-ci.org/changchang/stream-pkg.png)](http://travis-ci.org/changchang/stream-pkg)
 
-As we known, stream API is a good thing of Node.js and we could compose different applications by stream-based API conventionally. And package may be splited into small chunks when it transfered on stream-based API such as socket. We have to recompose the chunks into package when we receive them. But we have to do some jobs to find out when we get enough data to recover the original package. 
+Stream-pkg is a simple tool for packages that transfered on stream-based API.
+
+As we known, stream API is a good thing of Node.js and we could compose different applications by stream-based API conventionally. And package may be splited into small chunks when it transfered on stream-based API such as socket. We have to recompose the chunks into package when we receive them. But we have to do some jobs to find out when we get enough data to recover the original package.
 
 Stream-pkg add a simple header for each package and the header uses variable length to record the length of the package. The header contains several bytes. The highest bit of each byte indicates whether current byte is the last byte of the header. 0 for so and 1 for not. And the low 7 bits are the data of the length value. We can read the length of package from the header and then recover the package from the rest of data. And inside stream-pkg, we use a FSM to figure out when we should parse the header part and when we should parse the data part.
 
@@ -27,7 +29,7 @@ comp.on('data', function(data) {
 	done();
 });
 comp.feed(res);
-``` 
+```
 
 And we can use stream-pkg in a socket-based echo server and client as below:
 
@@ -96,15 +98,15 @@ for(var i=0; i<count; i++) {
 
 ##API
 ###composer.compose(pkg)
-Compose package into byte data. 
+Compose package into byte data.
 ####Arguments
 + pkg - String or Buffer. Package data.
 + return - Buffer that fill with package data.
 
 ###composer.feed(data, [offset], [end])
-Feed data into composer. 
+Feed data into composer.
 ####Arguments
-+ data - Buffer. Next chunnk of data receive from stream. 
++ data - Buffer. Next chunnk of data receive from stream.
 + offset - Number. Optional. Offset index of buffer that start to feed. Default is 0.
 + end - Number. Optional. End index (not includ) of buffer that stop to feed. Default is data.length.
 
