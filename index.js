@@ -1,1 +1,3 @@
-module.exports = require('./lib/composer');
+module.exports = process.env.STREAM_PKG_COV ?
+  require('./lib-cov/composer') :
+  require('./lib/composer');
