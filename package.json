@@ -3,7 +3,7 @@
 	"author": "changchang <changchang005@gmail.com>",
 	"version": "0.0.5",
 	"description": "A simple tool to compose package for stream based API, such as tcp socket.",
-	"homepage": "https://github.com/changchang/seq-queue",
+	"homepage": "https://github.com/changchang/stream-pkg",
 	"repository": {
 		"type": "git",
 		"url": "git@github.com:changchang/stream-pkg.git"
