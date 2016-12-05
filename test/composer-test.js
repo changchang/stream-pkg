@@ -104,4 +104,32 @@ describe('#Composer', function() {
     // should come here
     should.be.ok(false);
   });
+
+  it('should compose and decompose the separated packages', function (done) {
+      var src1 = 'hello';
+      var src2 = 'world' + new Array(127).join(".");
+      var comp1 = new Composer();
+      var comp2 = new Composer();
+
+      var res1 = comp1.compose(src1);
+      var res2 = comp1.compose(src2);
+
+      // assumeed that packets are separated by TCP.
+      var packet1 = Buffer.concat([res1, res2.slice(0, 1)]);
+      var packet2 = res2.slice(1);
+      
+      var first = true;
+      comp2.on('data', function (data) {
+          var str = data.toString('utf-8');
+          if (first) {
+              str.should.equal(src1);
+              first = false;
+          } else {
+              str.should.equal(src2);
+              done();
+          }
+      });
+      comp2.feed(packet1);
+      comp2.feed(packet2);
+  });
 });
